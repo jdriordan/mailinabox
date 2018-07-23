@@ -11,12 +11,16 @@
 
 # Adapted from http://blog.codefront.net/2007/06/11/nginx-php-and-a-php-fastcgi-daemon-init-script/
 
+set -x
+
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Mail-in-a-Box Management Daemon"
 NAME=mailinabox
 DAEMON=/usr/local/lib/mailinabox/start
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
+
+echo "miab service" >&2
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 0
@@ -40,6 +44,9 @@ export LC_TYPE=en_US.UTF-8
 
 # Load the VERBOSE setting and other rcS variables
 . /lib/init/vars.sh
+
+# Set VERBOSE anyway
+VERBOSE=1
 
 # Define LSB log_* functions.
 # Depend on lsb-base (>= 3.0-6) to ensure that this file is present.
@@ -111,7 +118,7 @@ case "$1" in
         esac
         ;;
   restart|force-reload)
-        log_daemon_msg "Restarting $DESC" "$NAME"
+        log_daemon_msg "Restarting $DESC" "$NAME" "LOL"
         do_stop
         case "$?" in
           0|1)

@@ -1,4 +1,4 @@
-Mail-in-a-Box
+Mail-in-a-Box - jdriordan's just-about-runs-on-debian-stretch version
 =============
 
 By [@JoshData](https://github.com/JoshData) and [contributors](https://github.com/mail-in-a-box/mailinabox/graphs/contributors).

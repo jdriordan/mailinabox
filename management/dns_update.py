@@ -486,6 +486,7 @@ $TTL 1800           ; default time to live
 	zone = zone.replace("__SERIAL__", serial)
 
 	# Write the zone file.
+	print ("Writing zone: ", zone)
 	with open(zonefile, "w") as f:
 		f.write(zone)
 
@@ -520,6 +521,7 @@ zone:
 
 	# Write out new contents and return True to signal that
 	# configuration changed.
+	print("Writing nsd conf: ", nsd_conf_file)
 	with open(nsd_conf_file, "w") as f:
 		f.write(nsdconf)
 	return True

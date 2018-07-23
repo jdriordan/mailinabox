@@ -21,6 +21,10 @@ echo "Installing Nginx (web server)..."
 
 apt_install nginx php7.0-cli php7.0-fpm
 
+# Add logfile so fail2ban doesn't get upset
+mkdir /var/log/nginx
+touch /var/log/nginx/access.log
+
 # Set PHP7 as the default
 update-alternatives --set php /usr/bin/php7.0
 

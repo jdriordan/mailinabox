@@ -86,7 +86,7 @@ if [ ! -f /usr/bin/add-apt-repository ]; then
 	apt_install software-properties-common
 fi
 
-hide_output add-apt-repository -y ppa:mail-in-a-box/ppa
+# hide_output add-apt-repository -y ppa:mail-in-a-box/ppa
 
 # ### Update Packages
 
@@ -122,8 +122,10 @@ apt_get_quiet autoremove
 echo Installing system packages...
 apt_install python3 python3-dev python3-pip \
 	netcat-openbsd wget curl git sudo coreutils bc \
-	haveged pollinate unzip \
+	haveged unzip \ 
 	unattended-upgrades cron ntp fail2ban
+#pollinate 
+
 
 # ### Add PHP7 PPA
 
@@ -131,11 +133,11 @@ apt_install python3 python3-dev python3-pip \
 # The PPA is located here https://launchpad.net/%7Eondrej/+archive/ubuntu/php
 # Unattended upgrades are activated for the repository If it appears it's already
 # installed, don't do it again so we can avoid an unnecessary call to apt-get update.
-if [ ! -f /etc/apt/sources.list.d/ondrej-php-trusty.list ]; then
-hide_output add-apt-repository -y ppa:ondrej/php
-apt_add_repository_to_unattended_upgrades LP-PPA-ondrej-php:trusty
-hide_output apt-get update
-fi
+# if [ ! -f /etc/apt/sources.list.d/ondrej-php-trusty.list ]; then
+# hide_output add-apt-repository -y ppa:ondrej/php
+# apt_add_repository_to_unattended_upgrades LP-PPA-ondrej-php:trusty
+# hide_output apt-get update
+# fi
 
 # ### Suppress Upgrade Prompts
 # Since Mail-in-a-Box might jump straight to 18.04 LTS, there's no need
@@ -230,7 +232,7 @@ dd if=/dev/random of=/dev/urandom bs=1 count=32 2> /dev/null
 # is really any good on virtualized systems, we'll also seed from Ubuntu's
 # pollinate servers:
 
-pollinate  -q -r
+# pollinate  -q -r
 
 # Between these two, we really ought to be all set.
 
